@@ -1,0 +1,163 @@
+{
+  "history": [
+    {
+      "code": "n3ae-9sf-21le",
+      "title": "Microservices",
+      "count": 5,
+      "timestamp": 1789829443775,
+      "type": "generated",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "question": "Which of the following best describes a microservice?",
+          "options": {
+            "A": "A small, independent service that focuses on a specific business capability",
+            "B": "A large, monolithic application handling all functions",
+            "C": "A shared library used by multiple applications",
+            "D": "A database schema for multiple services"
+          },
+          "correct": "A"
+        },
+        {
+          "type": "multiple_choice",
+          "question": "In an e-commerce platform, which is typically NOT implemented as a separate microservice?",
+          "options": {
+            "A": "Product catalog",
+            "B": "User authentication",
+            "C": "Payment processing",
+            "D": "HTML rendering engine"
+          },
+          "correct": "D"
+        },
+        {
+          "type": "multiple_choice",
+          "question": "During migration from a monolithic architecture, which step uses the Strangler Pattern?",
+          "options": {
+            "A": "Assess Monolith",
+            "B": "Define Services",
+            "C": "Gradual Migration",
+            "D": "Logging & Monitoring"
+          },
+          "correct": "C"
+        },
+        {
+          "type": "fill_in_blank",
+          "question": "The component that acts as a single entry point for client requests is the ____.",
+          "correct": "API Gateway"
+        },
+        {
+          "type": "fill_in_blank",
+          "question": "In microservices, each service typically owns its own ____ to ensure data isolation.",
+          "correct": "database"
+        }
+      ]
+    },
+    {
+      "code": "p3rw-pk9-rt7n",
+      "title": "Pub & Sub Architecture",
+      "count": 5,
+      "timestamp": 1789828894719,
+      "type": "generated",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "question": "Which component in the Pub/Sub model is responsible for routing messages from publishers to subscribers?",
+          "options": {
+            "A": "Publisher",
+            "B": "Subscriber",
+            "C": "Topic",
+            "D": "Message Broker"
+          },
+          "correct": "D"
+        },
+        {
+          "type": "fill_in_blank",
+          "question": "In the Pub/Sub model, publishers send messages to a ____ which categorizes the messages.",
+          "correct": "topic"
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Which delivery guarantee is NOT explicitly mentioned in the Pub/Sub description?",
+          "options": {
+            "A": "at-most-once",
+            "B": "at-least-once",
+            "C": "exactly-once",
+            "D": "best-effort"
+          },
+          "correct": "C"
+        },
+        {
+          "type": "fill_in_blank",
+          "question": "Pub/Sub is considered a ____ architecture because publishers and subscribers do not need to know each other directly.",
+          "correct": "loosely coupled"
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Which of the following is an example of a Pub/Sub messaging system?",
+          "options": {
+            "A": "Google Cloud Pub/Sub",
+            "B": "JMS queues",
+            "C": "AMQP queues",
+            "D": "RabbitMQ queues"
+          },
+          "correct": "A"
+        }
+      ]
+    },
+    {
+      "code": "s0xx-kbt-dgq6",
+      "title": "Pub & Sub Architecture",
+      "count": 5,
+      "timestamp": 1789805634992,
+      "type": "generated",
+      "questions": [
+        {
+          "type": "multiple_choice",
+          "question": "Which component routes messages from publishers to subscribers based on subscriptions?",
+          "options": {
+            "A": "Publisher",
+            "B": "Subscriber",
+            "C": "Message Broker",
+            "D": "Topic"
+          },
+          "correct": "C"
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Which delivery guarantee is NOT mentioned in the note?",
+          "options": {
+            "A": "at-most-once",
+            "B": "at-least-once",
+            "C": "exactly-once",
+            "D": "best-effort"
+          },
+          "correct": "C"
+        },
+        {
+          "type": "multiple_choice",
+          "question": "Which of the following is listed as an example of a Pub/Sub system?",
+          "options": {
+            "A": "Google Cloud Pub/Sub",
+            "B": "JMS queues",
+            "C": "Direct socket communication",
+            "D": "FTP server"
+          },
+          "correct": "A"
+        },
+        {
+          "type": "fill_in_blank",
+          "question": "The ____ component creates and sends messages to topics without knowing subscribers.",
+          "correct": "Publisher"
+        },
+        {
+          "type": "fill_in_blank",
+          "question": "In Pub/Sub, messages are sent to a ____ which categorizes them.",
+          "correct": "Topic"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "backendUrl": "https://quizora-2ugj.vercel.app"
+  }
+}

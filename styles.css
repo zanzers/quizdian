@@ -1,0 +1,332 @@
+.quizdian-container {
+  padding: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.quizdian-progress {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.quizdian-container h3 {
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.quizdian-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.quizdian-option-btn {
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.quizdian-option-btn:hover {
+  background: var(--background-modifier-hover);
+}
+
+.quizdian-option-btn.selected {
+  border-color: var(--interactive-accent);
+  background: var(--background-modifier-active-hover);
+  font-weight: 600;
+}
+
+.quizdian-fill-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-normal);
+  margin-bottom: 20px;
+}
+
+.quizdian-next-btn {
+  padding: 8px 20px;
+  border-radius: var(--radius-m);
+  border: none;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.quizdian-next-btn:hover {
+  background: var(--interactive-accent-hover);
+}
+
+
+
+.quizdian-home {
+  padding: 40px 24px;
+  max-width: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.quizdian-home h2 {
+  margin-bottom: 24px;
+}
+
+.quizdian-home-btn {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  cursor: pointer;
+  font-size: 1em;
+  text-align: center;
+}
+
+.quizdian-home-btn:hover {
+  background: var(--background-modifier-hover);
+}
+
+
+.quizdian-generating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.quizdian-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--background-modifier-border);
+  border-top-color: var(--interactive-accent);
+  border-radius: 50%;
+  animation: quizdian-spin 0.8s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes quizdian-spin {
+  to { transform: rotate(360deg); }
+}
+
+.quizdian-note-select {
+  padding: 8px;
+}
+
+.quizdian-note-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 12px 0;
+}
+
+.quizdian-note-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+}
+
+
+.quizdian-save {
+  padding: 8px;
+}
+
+.quizdian-code-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.quizdian-code {
+  background: var(--background-secondary);
+  padding: 8px 14px;
+  border-radius: var(--radius-m);
+  font-family: var(--font-monospace);
+}
+
+.quizdian-copy-btn {
+  padding: 6px 12px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  cursor: pointer;
+}
+
+
+
+
+.quizdian-score {
+  padding: 32px 24px;
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quizdian-score-label {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.quizdian-score-total {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.quizdian-score-percent {
+  color: var(--text-success, #4caf50);
+  margin-bottom: 24px;
+}
+
+.quizdian-missed-heading {
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.quizdian-missed-list {
+  text-align: left;
+}
+
+.quizdian-missed-row {
+  border-top: 1px solid var(--background-modifier-border);
+  padding: 10px 0;
+}
+
+.quizdian-missed-question {
+  color: var(--text-error, #e06c75);
+  margin: 0 0 2px;
+}
+
+.quizdian-missed-answer {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.9em;
+}
+
+.quizdian-preview-value {
+  font-weight: 500;
+  margin: 2px 0 12px;
+}
+
+.quizdian-btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.quizdian-back-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  cursor: pointer;
+}
+
+.quizdian-back-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.quizdian-next-btn {
+  margin-left: auto;
+}
+
+.quizdian-score {
+  padding: 32px 24px;
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quizdian-score-label {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.quizdian-score-total {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.quizdian-score-percent {
+  color: var(--text-success, #4caf50);
+  margin-bottom: 24px;
+}
+
+.quizdian-missed-heading {
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.quizdian-missed-list {
+  text-align: left;
+}
+
+.quizdian-missed-row {
+  border-top: 1px solid var(--background-modifier-border);
+  padding: 10px 0;
+}
+
+.quizdian-missed-question {
+  color: var(--text-error, #e06c75);
+  margin: 0 0 2px;
+}
+
+.quizdian-missed-answer {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.9em;
+}
+
+.quizdian-code-label {
+  display: inline-block;
+  font-size: 0.75em;
+  color: var(--text-faint);
+  font-family: var(--font-monospace);
+  background: var(--background-secondary);
+  padding: 2px 8px;
+  border-radius: var(--radius-s);
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+
+.quizdian-code-label:hover {
+  color: var(--text-muted);
+}
+
+
+.quizdian-score-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.quizdian-score-actions .quizdian-next-btn,
+.quizdian-score-actions .quizdian-back-btn {
+  margin-left: 0;
+}
+
+/* 
+zfa9-aih-vrgx */
