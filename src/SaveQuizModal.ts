@@ -37,7 +37,7 @@ export class SaveQuizModal extends Modal {
     const title = this.suggestedTitle || "Untitled Quiz";
 
     try {
-      const res = await fetch("https://quizora-2ugj.vercel.app/api/save-quiz", {
+      const res = await fetch(`${this.plugin.settings.backendUrl}/api/save-quiz`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -93,7 +93,7 @@ export class SaveQuizModal extends Modal {
       const newTitle = titleInput.value.trim();
       if (!newTitle || newTitle === this.suggestedTitle) return;
 
-      await fetch(`https://quizora-2ugj.vercel.app/api/quiz/${this.code}`, {
+      await fetch(`${this.plugin.settings.backendUrl}/api/quiz/${this.code}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: newTitle }),

@@ -11,6 +11,8 @@ export type HistoryEntry = {
   timestamp: number;
   type: "generated" | "joined";
   questions: any[];
+  score?: { correct: number; total: number };
+  completedAt?: number;
 };
 
 interface QuizdianData {
@@ -37,7 +39,7 @@ export default class QuizdianPlugin extends Plugin {
 
     this.addSettingTab(new QuizdianSettingTab(this.app, this));
 
-    this.registerView(VIEW_TYPE_QUIZ, (leaf) => new QuizView(leaf));
+    this.registerView(VIEW_TYPE_QUIZ, (leaf) => new QuizView(leaf, this));
     this.registerView(VIEW_TYPE_HOME, (leaf) => new HomeView(leaf, this));
 
     this.addRibbonIcon("help-circle", "Quizdian", () => {
@@ -67,8 +69,18 @@ export default class QuizdianPlugin extends Plugin {
   }
 
   async addHistoryEntry(entry: HistoryEntry) {
+    this.data.history = this.data.history.filter((h) => h.code !== entry.code);
     this.data.history.unshift(entry);
     this.data.history = this.data.history.slice(0, 30);
+    await this.saveData(this.data);
+  }
+
+  async updateHistoryScore(code: string, correct: number, total: number) {
+    const entry = this.data.history.find((h) => h.code === code);
+    if (!entry) return;
+
+    entry.score = { correct, total };
+    entry.completedAt = Date.now();
     await this.saveData(this.data);
   }
 
@@ -80,6 +92,12 @@ export default class QuizdianPlugin extends Plugin {
       await leaf.setViewState({ type: VIEW_TYPE_HOME, active: true });
     }
     workspace.revealLeaf(leaf);
+    (leaf.view as HomeView).render();
+  }
+
+  async clearHistory() {
+    this.data.history = [];
+    await this.saveData(this.data);
   }
 
   onunload() {}

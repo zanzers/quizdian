@@ -37,7 +37,7 @@ export class JoinQuizModal extends Modal {
 
     const input = contentEl.createEl("input", {
       type: "text",
-      placeholder: "Enter code, e.g. k3f9-x8q-p4mz",
+      placeholder: "Enter code",
       cls: "quizdian-fill-input",
     });
 
@@ -54,7 +54,7 @@ export class JoinQuizModal extends Modal {
       findBtn.disabled = true;
 
       try {
-        const res = await fetch(`https://quizora-2ugj.vercel.app/api/quiz/${code}`);
+        const res = await fetch(`${this.plugin.settings.backendUrl}/api/quiz/${code}`);
         const data = await res.json();
 
         if (!res.ok) {

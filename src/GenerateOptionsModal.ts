@@ -41,7 +41,7 @@ export class GenerateOptionsModal extends Modal {
       generatingModal.open();
 
       try {
-        const res = await fetch("https://quizora-2ugj.vercel.app/api/generate-from-text", {
+        const res = await fetch(`${this.plugin.settings.backendUrl}/api/generate-from-text`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ text: this.content, count }),

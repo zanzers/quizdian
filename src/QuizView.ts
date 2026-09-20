@@ -1,4 +1,5 @@
 import { ItemView, WorkspaceLeaf, Notice } from "obsidian";
+import type QuizdianPlugin from "./main";
 
 export const VIEW_TYPE_QUIZ = "quizdian-quiz-view";
 
@@ -10,13 +11,15 @@ type Question = {
 };
 
 export class QuizView extends ItemView {
+  plugin: QuizdianPlugin;
   questions: Question[] = [];
   code: string = "";
   current = 0;
   answers: string[] = [];
 
-  constructor(leaf: WorkspaceLeaf) {
+  constructor(leaf: WorkspaceLeaf, plugin: QuizdianPlugin) {
     super(leaf);
+    this.plugin = plugin;
   }
 
   getViewType() {
@@ -152,15 +155,62 @@ export class QuizView extends ItemView {
     nextBtn.onclick = goNext;
   }
 
-  showScore() {
+  async showScore() {
+    const container = this.containerEl.children[1];
+    container.empty();
+    container.addClass("quizdian-score");
+    container.createEl("p", { text: "Grading your answers..." });
+
+    const correctFlags: boolean[] = new Array(this.questions.length).fill(false);
+    const fillBlankItems: { index: number; question: string; correctAnswer: string; studentAnswer: string }[] = [];
+
+    this.questions.forEach((q, i) => {
+      if (q.type === "multiple_choice") {
+        correctFlags[i] = q.correct.trim().toLowerCase() === (this.answers[i] ?? "").trim().toLowerCase();
+      } else {
+        fillBlankItems.push({
+          index: i,
+          question: q.question,
+          correctAnswer: q.correct,
+          studentAnswer: this.answers[i] ?? "",
+        });
+      }
+    });
+
+    if (fillBlankItems.length > 0) {
+      try {
+        const res = await fetch(`${this.plugin.settings.backendUrl}/api/grade`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ items: fillBlankItems }),
+        });
+        const { results } = await res.json();
+        fillBlankItems.forEach((item, j) => {
+          correctFlags[item.index] = results[j]?.correct ?? false;
+        });
+      } catch (err) {
+        new Notice("Quizdian: couldn't grade fill-in-blank answers, using exact match instead.");
+        fillBlankItems.forEach((item) => {
+          correctFlags[item.index] =
+            item.correctAnswer.trim().toLowerCase() === item.studentAnswer.trim().toLowerCase();
+        });
+      }
+    }
+
+    if (this.code) {
+      const correctCount = correctFlags.filter(Boolean).length;
+      await this.plugin.updateHistoryScore(this.code, correctCount, this.questions.length);
+    }
+
+    this.renderScore(correctFlags);
+  }
+
+  renderScore(correctFlags: boolean[]) {
     const container = this.containerEl.children[1];
     container.empty();
     container.addClass("quizdian-score");
 
-    const correctCount = this.questions.filter(
-      (q, i) => q.correct.trim().toLowerCase() === (this.answers[i] ?? "").trim().toLowerCase()
-    ).length;
-
+    const correctCount = correctFlags.filter(Boolean).length;
     const percent = Math.round((correctCount / this.questions.length) * 100);
 
     container.createEl("p", { text: "Quiz complete", cls: "quizdian-score-label" });
@@ -172,7 +222,7 @@ export class QuizView extends ItemView {
 
     const missed = this.questions
       .map((q, i) => ({ q, i }))
-      .filter(({ q, i }) => q.correct.trim().toLowerCase() !== (this.answers[i] ?? "").trim().toLowerCase());
+      .filter(({ i }) => !correctFlags[i]);
 
     if (missed.length > 0) {
       container.createEl("p", { text: "Missed questions", cls: "quizdian-missed-heading" });
@@ -188,30 +238,27 @@ export class QuizView extends ItemView {
     if (this.code) {
       container.createEl("p", { text: `Code: ${this.code}`, cls: "quizdian-code-label" });
     }
+
     const actionsRow = container.createDiv({ cls: "quizdian-score-actions" });
 
-    const retakeBtn = actionsRow.createEl("button", {
-    text: "Retake",
-    cls: "quizdian-next-btn",
-    });
+    const retakeBtn = actionsRow.createEl("button", { text: "Retake", cls: "quizdian-next-btn" });
     retakeBtn.onclick = () => {
-    this.setQuestions(this.questions, this.code);
+      this.setQuestions(this.questions, this.code);
     };
 
-    const homeBtn = actionsRow.createEl("button", {
-    text: "Back to home",
-    cls: "quizdian-back-btn",
-    });
+    const homeBtn = actionsRow.createEl("button", { text: "Back to home", cls: "quizdian-back-btn" });
     homeBtn.onclick = () => {
-    const { workspace } = this.app;
-    const homeLeaves = workspace.getLeavesOfType("quizdian-home-view");
-    if (homeLeaves.length > 0) {
+      const { workspace } = this.app;
+      const homeLeaves = workspace.getLeavesOfType("quizdian-home-view");
+      if (homeLeaves.length > 0) {
         workspace.revealLeaf(homeLeaves[0]);
-    } else {
+        const homeView = homeLeaves[0].view as any;
+        homeView.render?.();
+      } else {
         const leaf = workspace.getLeaf("tab");
         leaf.setViewState({ type: "quizdian-home-view", active: true });
         workspace.revealLeaf(leaf);
-    }
+      }
     };
   }
 

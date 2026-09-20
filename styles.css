@@ -1,3 +1,4 @@
+/* Quiz-taking view */
 .quizdian-container {
   padding: 24px;
   max-width: 600px;
@@ -51,6 +52,7 @@
   background: var(--background-primary);
   color: var(--text-normal);
   margin-bottom: 20px;
+  box-sizing: border-box;
 }
 
 .quizdian-next-btn {
@@ -61,46 +63,50 @@
   color: var(--text-on-accent);
   cursor: pointer;
   font-weight: 600;
+  margin-left: auto;
 }
 
 .quizdian-next-btn:hover {
   background: var(--interactive-accent-hover);
 }
 
-
-
-.quizdian-home {
-  padding: 40px 24px;
-  max-width: 320px;
-  margin: 0 auto;
+.quizdian-btn-row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  gap: 8px;
+  margin-top: 8px;
 }
 
-.quizdian-home h2 {
-  margin-bottom: 24px;
-}
-
-.quizdian-home-btn {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 12px;
+.quizdian-back-btn {
+  padding: 8px 16px;
   border-radius: var(--radius-m);
   border: 1px solid var(--background-modifier-border);
   background: var(--background-secondary);
   color: var(--text-normal);
   cursor: pointer;
-  font-size: 1em;
-  text-align: center;
 }
 
-.quizdian-home-btn:hover {
-  background: var(--background-modifier-hover);
+.quizdian-back-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
+.quizdian-code-label {
+  display: inline-block;
+  font-size: 0.75em;
+  color: var(--text-faint);
+  font-family: var(--font-monospace);
+  background: var(--background-secondary);
+  padding: 2px 8px;
+  border-radius: var(--radius-s);
+  margin-bottom: 14px;
+  cursor: pointer;
+}
 
+.quizdian-code-label:hover {
+  color: var(--text-muted);
+}
+
+/* Generating spinner */
 .quizdian-generating {
   display: flex;
   flex-direction: column;
@@ -122,6 +128,7 @@
   to { transform: rotate(360deg); }
 }
 
+/* Note selection */
 .quizdian-note-select {
   padding: 8px;
 }
@@ -139,7 +146,7 @@
   padding: 6px 0;
 }
 
-
+/* Save quiz form */
 .quizdian-save {
   padding: 8px;
 }
@@ -167,57 +174,8 @@
   cursor: pointer;
 }
 
-
-
-
-.quizdian-score {
-  padding: 32px 24px;
-  max-width: 480px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.quizdian-score-label {
-  font-size: 0.85em;
-  color: var(--text-muted);
-  margin-bottom: 4px;
-}
-
-.quizdian-score-total {
-  font-size: 2.5em;
-  font-weight: 700;
-  margin: 0 0 4px;
-}
-
-.quizdian-score-percent {
-  color: var(--text-success, #4caf50);
-  margin-bottom: 24px;
-}
-
-.quizdian-missed-heading {
-  font-weight: 600;
-  text-align: left;
-  margin-bottom: 8px;
-}
-
-.quizdian-missed-list {
-  text-align: left;
-}
-
-.quizdian-missed-row {
-  border-top: 1px solid var(--background-modifier-border);
-  padding: 10px 0;
-}
-
-.quizdian-missed-question {
-  color: var(--text-error, #e06c75);
-  margin: 0 0 2px;
-}
-
-.quizdian-missed-answer {
-  color: var(--text-muted);
-  margin: 0;
-  font-size: 0.9em;
+.quizdian-copy-btn:hover {
+  background: var(--background-modifier-hover);
 }
 
 .quizdian-preview-value {
@@ -225,30 +183,7 @@
   margin: 2px 0 12px;
 }
 
-.quizdian-btn-row {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.quizdian-back-btn {
-  padding: 8px 16px;
-  border-radius: var(--radius-m);
-  border: 1px solid var(--background-modifier-border);
-  background: var(--background-secondary);
-  color: var(--text-normal);
-  cursor: pointer;
-}
-
-.quizdian-back-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.quizdian-next-btn {
-  margin-left: auto;
-}
-
+/* Score screen */
 .quizdian-score {
   padding: 32px 24px;
   max-width: 480px;
@@ -298,23 +233,6 @@
   margin: 0;
   font-size: 0.9em;
 }
-
-.quizdian-code-label {
-  display: inline-block;
-  font-size: 0.75em;
-  color: var(--text-faint);
-  font-family: var(--font-monospace);
-  background: var(--background-secondary);
-  padding: 2px 8px;
-  border-radius: var(--radius-s);
-  margin-bottom: 14px;
-  cursor: pointer;
-}
-
-.quizdian-code-label:hover {
-  color: var(--text-muted);
-}
-
 
 .quizdian-score-actions {
   display: flex;
@@ -328,5 +246,125 @@
   margin-left: 0;
 }
 
-/* 
-zfa9-aih-vrgx */
+/* Home view */
+.quizdian-home {
+  padding: 24px 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quizdian-home h2 {
+  margin-bottom: 16px;
+}
+
+.quizdian-home-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  cursor: pointer;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.quizdian-home-btn:hover {
+  background: var(--background-modifier-hover);
+}
+
+.quizdian-history-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+
+.quizdian-history-heading {
+  font-size: 0.8em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+.quizdian-clear-btn {
+  font-size: 0.75em;
+  padding: 4px 10px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--background-modifier-border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.quizdian-clear-btn:hover {
+  color: var(--text-error, #e06c75);
+  border-color: var(--text-error, #e06c75);
+}
+
+.quizdian-history-empty {
+  color: var(--text-faint);
+  font-size: 0.9em;
+}
+
+.quizdian-history-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quizdian-history-card {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background: var(--background-secondary);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.quizdian-history-card:hover,
+.quizdian-history-card:active {
+  border-color: var(--interactive-accent);
+  background: var(--background-modifier-hover);
+}
+
+.quizdian-history-title {
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.quizdian-history-field {
+  font-size: 0.85em;
+  margin-bottom: 2px;
+}
+
+.quizdian-history-code-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quizdian-history-key {
+  color: var(--text-muted);
+}
+
+.quizdian-history-code-val {
+  font-family: var(--font-monospace);
+}
+
+.quizdian-history-score-val {
+  color: var(--text-success, #4caf50);
+  font-weight: 600;
+}
