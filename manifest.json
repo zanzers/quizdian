@@ -1,9 +1,1 @@
-{
-    "id":"quizdian",
-    "name":"Quizdian"
-    ,"version":"0.1.2"
-    ,"minAppVersion":"1.0.0"
-    ,"description":"Generate quizzes from your notes, grounded in what you've actually written."
-    ,"author":"Nowarie_Studio"
-    ,"authorUrl":""
-    ,"isDesktopOnly":false}
+{"id":"quizdian","name":"Quizdian","version":"0.1.2","minAppVersion":"1.0.0","description":"Generate quizzes from your notes, grounded in what you've actually written.","author":"Nowarie_Studio","authorUrl":"","isDesktopOnly":false}
