@@ -51,7 +51,7 @@ var QuizView = class extends import_obsidian.ItemView {
     return "Quizdian";
   }
   getIcon() {
-    return "help-circle";
+    return "brain";
   }
   setQuestions(questions, code = "") {
     this.questions = questions;
@@ -611,7 +611,7 @@ var HomeView = class extends import_obsidian7.ItemView {
     return "Quizdian";
   }
   getIcon() {
-    return "help-circle";
+    return "brain";
   }
   async onOpen() {
     this.render();

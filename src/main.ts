@@ -42,7 +42,7 @@ export default class QuizdianPlugin extends Plugin {
     this.registerView(VIEW_TYPE_QUIZ, (leaf) => new QuizView(leaf, this));
     this.registerView(VIEW_TYPE_HOME, (leaf) => new HomeView(leaf, this));
 
-    this.addRibbonIcon("help-circle", "Quizdian", () => {
+    this.addRibbonIcon("brain", "Quizdian", () => {
       this.activateHomeView();
     });
 

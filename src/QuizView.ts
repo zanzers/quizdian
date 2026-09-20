@@ -31,7 +31,7 @@ export class QuizView extends ItemView {
   }
 
   getIcon() {
-    return "help-circle";
+    return "brain";
   }
 
   setQuestions(questions: Question[], code = "") {

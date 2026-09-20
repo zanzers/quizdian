@@ -23,7 +23,7 @@ export class HomeView extends ItemView {
   }
 
   getIcon() {
-    return "help-circle";
+    return "brain";
   }
 
   async onOpen() {
