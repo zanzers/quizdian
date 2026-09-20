@@ -1,5 +1,10 @@
 # Quizdian
 
+> This is my first personal project while learning and working toward
+> becoming an AI Engineer. I use Obsidian for my notes, and built Quizdian
+> so I could quickly test and review my own knowledge as I learn new
+> things — no uploading, just open a note and generate a quiz from it.
+
 An Obsidian plugin that generates quizzes directly from your notes —
 multiple choice and fill-in-the-blank, grounded in what you've actually
 written, gradeable, shareable by code, and remembered locally as history.
@@ -41,7 +46,20 @@ retrievable from either place by its code.
 - **Settings tab** — configurable backend URL, so this can point at
   `localhost:3000` during development or a real deployed URL in normal use
 
-## Setup
+## Try it (beta, via BRAT)
+
+This plugin isn't in Obsidian's community plugin directory yet — it's
+distributed as a beta through [BRAT](https://github.com/TfTHacker/obsidian42-brat)
+(Beta Reviewer's Auto-update Tool), the standard way Obsidian plugin authors
+share pre-release versions.
+
+1. Install **BRAT** from Obsidian's normal Community Plugins store.
+2. In BRAT's settings, click **Add Beta plugin**.
+3. Paste this repo: `yourusername/obsidian-quizdian`.
+4. BRAT installs Quizdian from the latest GitHub Release and will keep it
+   updated automatically as new releases are published.
+
+## Setup (manual install, for development)
 
 1. Clone this repo into `YourVault/.obsidian/plugins/quizdian/`, or build
    elsewhere and copy just `main.js`, `manifest.json`, and `styles.css`

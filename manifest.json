@@ -1,10 +1,10 @@
 {
   "id": "quizdian",
   "name": "Quizdian",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "minAppVersion": "1.0.0",
   "description": "Generate quizzes from your notes, grounded in what you've actually written.",
-  "author": "your name",
+  "author": "Nowarie_Studio",
   "authorUrl": "",
   "isDesktopOnly": false
 }
